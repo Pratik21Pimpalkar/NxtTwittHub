@@ -123,8 +123,8 @@ function ThreadCard({ id, currentUserId, parentId, content, author, community, c
           </Link>
         </div>
       )}
-      {community === null &&
-        <p className='mt-5 text-subtle-medium text-gray-1'>
+      {(!community  || isComment) &&
+        <p className={ `${isComment ? "mb-5": ""} mt-5 text-subtle-medium text-gray-1`}>
           {formatDateString(createdAt)}
         </p>}
 
@@ -141,8 +141,8 @@ function ThreadCard({ id, currentUserId, parentId, content, author, community, c
           <Image
             src={community.image}
             alt={community.name}
-            width={14}
-            height={14}
+            width={16}
+            height={16}
             className='ml-1 rounded-full object-cover'
           />
         </Link>

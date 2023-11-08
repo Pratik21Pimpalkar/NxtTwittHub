@@ -4,6 +4,7 @@ import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import { fetchUser, getActivity } from "@/lib/actions/user.actions";
+import { formatDateString } from "@/lib/utils";
 
 async function Page() {
   const user = await currentUser();
@@ -27,8 +28,8 @@ async function Page() {
                   <Image
                     src={activity.author.image}
                     alt='user_logo'
-                    width={20}
-                    height={20}
+                    width={30}
+                    height={30}
                     className='rounded-full object-cover'
                   />
                   <p className='!text-small-regular text-light-1'>
@@ -36,6 +37,9 @@ async function Page() {
                       {activity.author.name}
                     </span>{" "}
                     replied to your thread
+                    <p className='mt-1 text-subtle-medium text-gray-1'>
+                      {formatDateString(activity.createdAt)}
+                    </p>
                   </p>
                 </article>
               </Link>
